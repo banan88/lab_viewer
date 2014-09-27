@@ -1,0 +1,5 @@
+#hack for ignoring db dir contents, but not the dir itself
+
+*
+
+!.gitignore
