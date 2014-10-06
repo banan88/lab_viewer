@@ -7,6 +7,7 @@ from app.models.tag import Tag
 database_driver = 'sqlite:///'
 database_path = 'db/lab_viewer.db'
 rest_api_prefix = '/api/v1'
+all_http_verbs = ['GET', 'DELETE', 'POST', 'PUT']
 
 
 def create_app():
@@ -26,7 +27,7 @@ def create_api_manager(application):
     Creates & configures flask-restless api manager providing rest api for db model classes.
     """
     manager = APIManager(application, flask_sqlalchemy_db=db)
-    manager.create_api(Tag, url_prefix=rest_api_prefix, methods=['GET'])
+    manager.create_api(Tag, url_prefix=rest_api_prefix, methods=all_http_verbs, include_columns=['id', 'name', 'labs'])
 
 
 def create_db_schema():
