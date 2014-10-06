@@ -48,6 +48,11 @@ create_api_manager(app)
 def hello_world():
     return 'TODO: should serve frontend js app.'
 
+@app.route('/kamon/') #
+def hello_kamon():
+    return 'TESTING SHIT AND STUFF'
+
+
 
 if __name__ == '__main__':
     create_db_schema()
