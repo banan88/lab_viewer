@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, make_response
 from flask.ext.restless import APIManager, ProcessingException
 from app.shared import db
 from app.models.tag import Tag
@@ -15,7 +15,7 @@ def create_app():
     """
     Creates & configures flask application object and associates sqlalchemy db object with it.
     """
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='')
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = database_driver + database_path
     db.app = app
@@ -56,13 +56,8 @@ create_api_manager(app)
 
 
 @app.route('/')  #
-def hello_world():
-    return 'TODO: should serve frontend js app.'
-
-
-@app.route('/kamon/')  #
-def hello_kamon():
-    return 'TESTING SHIT AND STUFF'
+def home():
+    return make_response(open('static/home.html').read())
 
 
 if __name__ == '__main__':
