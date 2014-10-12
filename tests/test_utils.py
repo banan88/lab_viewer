@@ -6,7 +6,7 @@ from app.shared import db
 from lab_viewer import app
 
 default_http_headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-http_status = {200: '200 OK', 201: '201 CREATED', 204: '204 NO CONTENT'}
+http_status = {200: '200 OK', 201: '201 CREATED', 204: '204 NO CONTENT', 400: '400 BAD REQUEST'}
 
 
 class TestClientManager():

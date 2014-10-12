@@ -2,13 +2,10 @@ import unittest
 import json
 from app.models.tag import Tag
 from app.models.lab import Lab
-from test_utils import TestClientManager
-from test_utils import http_status
-from test_utils import db
-from tests.test_utils import default_http_headers
+from tests.test_utils import TestClientManager, http_status, db, default_http_headers
 
 
-class SomeTestCase(unittest.TestCase):
+class TagApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         TestClientManager.setUpAppClient()
