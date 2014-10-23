@@ -1,1 +1,1 @@
-var app = angular.module('LabViewer', [])
+angular.module('app', ['Controllers']);
