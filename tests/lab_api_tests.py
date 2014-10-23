@@ -91,7 +91,6 @@ class LabApiTests(unittest.TestCase):
         self.assertEquals(http_status[201], response.status)
         self.assertEquals('new_lab', data['name'])
         self.assertFalse(data['parent_id'])
-        print data
         self.assertEquals(['child_lab1', 'child_lab2'],
                           [data['child_nodes'][0]['name'], data['child_nodes'][1]['name']])
 
