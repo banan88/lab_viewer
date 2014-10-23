@@ -4,9 +4,9 @@ angular.module('Controllers', ['Services']);
 /*controller declaration*/
 angular.module('Controllers').controller('TestController', testControllerHandler);
 
-function testControllerHandler($scope, LabService) {
-    $scope.someValue = LabService.getLabs();
+function testControllerHandler($scope, Lab) {
+    $scope.someValue = Lab.get();
 };
 /*injecting from Services module*/
-testControllerHandler.$inject = ['$scope','LabService']
+testControllerHandler.$inject = ['$scope','Lab']
 

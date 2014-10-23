@@ -1,9 +1,8 @@
 angular.module('Services', ['ngResource']);
 
-angular.module('Services').service('LabService', labServiceHandler);
+angular.module('Services').factory('Lab', labServiceHandler);
 
-function labServiceHandler(){
-    this.getLabs = function(){
-        return [1,2,3,4,5];
-    };
+function labServiceHandler($resource){
+        return $resource('/api/v1/lab/:id');
 }
+labServiceHandler.$inject = ['$resource'];
