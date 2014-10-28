@@ -2,11 +2,11 @@
 angular.module('Controllers', ['Services']);
 
 /*controller declaration*/
-angular.module('Controllers').controller('TestController', testControllerHandler);
+angular.module('Controllers').controller('LabController', labControllerHandler);
 
-function testControllerHandler($scope, Lab) {
-    $scope.someValue = Lab.get();
+function labControllerHandler($scope, Lab) {
+    $scope.labs = Lab.get();
 };
 /*injecting from Services module*/
-testControllerHandler.$inject = ['$scope','Lab']
+labControllerHandler.$inject = ['$scope','Lab']
 

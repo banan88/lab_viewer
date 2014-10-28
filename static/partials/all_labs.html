@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="Controllers" ng-controller="LabController">
+    <ul>
+        <div ng-repeat="lab in labs.objects">
+            <h1>{{ lab.name }}</h1>
+            <ul ng-repeat="tag in lab.tags">
+                {{ tag.name }}
+            </ul>
+        </div>
+    </ul>
+</body>
+</html>
