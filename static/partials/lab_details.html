@@ -5,6 +5,16 @@
     <title></title>
 </head>
 <body>
+<div ng-app="Controllers" ng-controller="LabController">
+    <h1>{{ lab.name }}</h1>
 
+    <h2>lab data:</h2>
+
+    parent name: <a href="#/lab/{{ parentNode.id }}">{{ parentNode.name}}</a>
+    <div>
+        {{ lab }}
+    </div>
+
+</div>
 </body>
 </html>
