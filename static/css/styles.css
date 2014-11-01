@@ -1,0 +1,11 @@
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+
+.black_text, .black_text:hover {
+    color: black;
+}
+
+.white_text, .white_text:hover {
+    color: white;
+}

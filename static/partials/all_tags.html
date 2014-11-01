@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ng-app="Controllers" ng-controller="TagController">
+    <div class="panel panel-default" >
+        <div class="panel-heading" style="overflow:hidden;">
+            <b>Tags</b>
+            <button style="float:right; " type="button" class="btn btn-default btn-sm">New tag
+            </button>
+        </div>
+        <div>
+            </br>
+            <ul ng-repeat="tag in tags.objects">
+                <span class="label label-default"><a class="white_text"
+                                                     href="#/tag/{{ tag.id }}">{{ tag.name }}</a></span>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

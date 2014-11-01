@@ -1,4 +1,4 @@
-angular.module('LabViewerApp', ['Controllers', 'ngRoute']);
+angular.module('LabViewerApp', ['ngRoute', 'ui.bootstrap', 'Controllers']);
 
 angular.module('LabViewerApp').config(['$routeProvider', routeHandler]);
 

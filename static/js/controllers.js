@@ -1,8 +1,8 @@
 /*module declaration with dependencies*/
 angular.module('Controllers', ['Services']);
 
-/*controller declaration*/
 angular.module('Controllers').controller('LabController', labControllerHandler);
+angular.module('Controllers').controller('TagController', tagControllerHandler);
 
 function labControllerHandler($scope, $routeParams, Lab) {
     var labId = $routeParams.param;
@@ -15,6 +15,15 @@ function labControllerHandler($scope, $routeParams, Lab) {
         $scope.labs = Lab.get();
     }
 };
-/*injecting from Services module*/
 labControllerHandler.$inject = ['$scope', '$routeParams', 'Lab']
+
+function tagControllerHandler($scope, $routeParams, Tag) {
+    var tagId = $routeParams.param;
+    if (tagId) {
+        $scope.tag = Tag.get({id: tagId});
+    } else {
+        $scope.tags = Tag.get();
+    }
+};
+tagControllerHandler.$inject = ['$scope', '$routeParams', 'Tag']
 

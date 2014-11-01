@@ -6,15 +6,52 @@
 </head>
 <body>
 <div ng-app="Controllers" ng-controller="LabController">
-    <h1>{{ lab.name }}</h1>
+        <span>
+            <ol class="breadcrumb" style="overflow: hidden">
+                <li><a href="/#/">All labs</a></li>
+                <li><a href="#/lab/{{ lab.id }}">{{ lab.name }}</a></li>
+                <button style="float:right;" type="button" class="btn btn-success btn-sm">New lab</button>
+            </ol>
+        </span>
 
-    <h2>lab data:</h2>
-
-    parent name: <a href="#/lab/{{ parentNode.id }}">{{ parentNode.name}}</a>
-    <div>
-        {{ lab }}
+    <div class="panel panel-info">
+        <div class="panel-heading" style="overflow: hidden">
+            <b><a class="black_text" href="#/lab/{{ lab.id }}">{{ lab.name }}</a>&nbsp;&nbsp;&nbsp;</b>
+                    <span ng-repeat="tag in lab.tags">
+                        <span class="label label-default"><a class="white_text"
+                                                             href="#/tag/{{ tag.id }}">{{ tag.name }}</a></span>
+                    </span>
+            <button style="float:right; " type="button" class="btn btn-sm">Add tag
+            </button>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <td>Name</td>
+                    <td>{{ lab.name }}</td>
+                </tr>
+                <tr>
+                    <td>Id</td>
+                    <td>{{ lab.id }}</td>
+                </tr>
+                <tr ng-show="parentNode.name.length">
+                    <td>Parent node</td>
+                    <td><span class="label label-info">
+                        <a class="black_text" href="#/lab/{{ parentNode.id }}">{{ parentNode.name }}</a>
+                    </span>
+                    </td>
+                </tr>
+                <tr ng-show="lab.child_nodes.length">
+                    <td>Child nodes</td>
+                    <td>
+                        <span class="label label-info" ng-repeat="node in lab.child_nodes">
+                        <a class="black_text" href="#/lab/{{ node.id }}">{{ node.name }}</a>
+                    </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-
 </div>
 </body>
 </html>
