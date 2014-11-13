@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<div ng-app="Controllers" ng-controller="LabController">
-    <span>
-            <ol class="breadcrumb" style="overflow: hidden">
-                <li><a href="/#/">All labs</a></li>
-                <li><a href="#/lab/{{ lab.id }}">{{ lab.name }}</a></li>
-                <button style="float:right;" type="button" class="btn btn-success btn-sm">New lab</button>
-            </ol>
-    </span>
 
+<div >
     <div ng-repeat="lab in labs.objects">
         <div class="panel panel-info">
-            <div class="panel-heading" style="overflow: hidden">
-                <b><a class="black_text" href="#/lab/{{ lab.id }}">{{ lab.name }}</a>&nbsp;&nbsp;&nbsp;</b>
-                    <span ng-repeat="tag in lab.tags">
-                        <span class="label label-default"><a class="white_text"
-                                                             href="#/tag/{{ tag.id }}">{{ tag.name }}</a></span>
-                    </span>
-                <button style="float:right; " type="button" class="btn btn-default btn-sm">Add tag
-                </button>
+            <div class="panel-heading" style="overflow: hidden" ng-include="'partials/lab_panel_header_with_tags.html'">
             </div>
             <div class="panel-body" ng-show="lab.child_nodes.length">
                     <span class="label label-info" ng-repeat="node in lab.child_nodes">
@@ -33,7 +12,3 @@
         </div>
     </div>
 </div>
-
-
-</body>
-</html>
