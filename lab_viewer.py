@@ -43,7 +43,6 @@ create_api_manager(app)
 def home():
     return make_response(open('static/home.html').read())
 
-
 if __name__ == '__main__':
     create_db_schema()
     if app.debug:
