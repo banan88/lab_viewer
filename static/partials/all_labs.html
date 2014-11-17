@@ -1,13 +1,14 @@
-
-<div >
+<div>
     <div ng-repeat="lab in labs.objects">
         <div class="panel panel-info">
             <div class="panel-heading" style="overflow: hidden" ng-include="'partials/lab_panel_header_with_tags.html'">
             </div>
             <div class="panel-body" ng-show="lab.child_nodes.length">
-                    <span class="label label-info" ng-repeat="node in lab.child_nodes">
+                <div style="float:left" ng-repeat="node in lab.child_nodes">
+                    <span class="label label-info">
                         <a class="black_text" href="#/lab/{{ node.id }}">{{ node.name }}</a>
-                    </span>
+                    </span>&nbsp;
+                </div>
             </div>
         </div>
     </div>

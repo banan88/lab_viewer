@@ -1,6 +1,6 @@
-    <b><a class="black_text" href="#/lab/{{ lab.id }}">{{ lab.name }}</a>&nbsp;&nbsp;&nbsp;</b>
-                    <span ng-repeat="tag in lab.tags">
+<b><a class="black_text" href="#/lab/{{ lab.id }}">{{ lab.name }}</a>&nbsp;&nbsp;&nbsp;</b>
+<span ng-repeat="tag in lab.tags">
                         <span class="label label-default"><a class="white_text"
                                                              href="#/tag/{{ tag.id }}">{{ tag.name }}</a></span>
                     </span>
-    <button style="float:right; " type="button" class="btn btn-sm btn-default">Add tag</button>
+<button style="float:right; " type="button" class="btn btn-sm btn-default">Add tag</button>

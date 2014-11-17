@@ -29,9 +29,11 @@
                 <tr ng-show="lab.child_nodes.length">
                     <td>Child nodes</td>
                     <td>
-                        <span class="label label-info" ng-repeat="node in lab.child_nodes">
-                        <a class="black_text" href="#/lab/{{ node.id }}">{{ node.name }}</a>
-                    </span>
+                        <div style="float:left" ng-repeat="node in lab.child_nodes">
+                        <span class="label label-info">
+                            <a class="black_text" href="#/lab/{{ node.id }}">{{ node.name }}</a>
+                        </span>&nbsp;
+                        </div>
                     </td>
                 </tr>
             </table>
