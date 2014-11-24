@@ -1,4 +1,12 @@
-<div>
+<div ng-controller="LabCreationModalController">
     <h1>New lab</h1>
-    <p>creating new lab!</p>
+
+    <form class="form-horizontal" role="form" novalidate>
+        Lab name <br/>
+        <input class="form-control" type="text" placeholder="labName" ng-model="labCreationForm.name">
+        Parent lab <br/>
+        <input class="form-control" type="text" placeholder="parentLabId" ng-model="labCreationForm.parent_id">
+        <button type="submit" ng-click="saveLab()" class="btn btn-success">Save2</button>
+    </form>
+
 </div>

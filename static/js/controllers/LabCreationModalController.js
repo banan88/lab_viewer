@@ -2,8 +2,13 @@ angular.module('Controllers').controller('LabCreationModalController', labCreati
 labCreationModalHandler.$inject = ['$scope', '$modal', '$log'];
 
 function labCreationModalHandler($scope, $modal, $log) {
-    $scope.open = function () {
+    $scope.labCreationForm = {};
+    $scope.saveLab = saveLab($scope, $log);
+    $scope.openModal = openModal($scope, $modal, $log);
+}
 
+function openModal($scope, $modal, $log) {
+    return function () {
         var modalInstance = $modal.open({
             templateUrl: 'partials/lab_creation_form.html',
             /*controller: 'ModalInstanceCtrl',*/
@@ -20,4 +25,10 @@ function labCreationModalHandler($scope, $modal, $log) {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-}
+};
+
+function saveLab($scope, $log) {
+    return function () {
+        $log.info('saveLab called, labname: ' + $scope.labCreationForm.name);
+    };
+};
