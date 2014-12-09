@@ -16,7 +16,7 @@ class TagApiTests(unittest.TestCase):
         TestClientManager.tearDownAppClient()
 
     def setUp(self):
-        self.prepareTags()
+        self.prepare_tags()
 
     def tearDown(self):
         Tag.query.delete()
@@ -27,7 +27,7 @@ class TagApiTests(unittest.TestCase):
         response = TestClientManager.test_client.get('/api/v1/tag')
         data = json.loads(response.data)
         self.assertEquals(http_status[200], response.status)
-        self.assertTags(data)
+        self.assert_tags(data)
 
     def test_get_single_tag(self):
         response = TestClientManager.test_client.get('/api/v1/tag/2')
@@ -58,7 +58,7 @@ class TagApiTests(unittest.TestCase):
         self.assertEquals(http_status[200], response.status)
         self.assertEquals('new_tag_name', data['name'])
 
-    def prepareTags(self):
+    def prepare_tags(self):
         tag_1 = Tag('tag1')
         tag_2 = Tag('tag2')
         tag_3 = Tag('tag3')
@@ -69,7 +69,7 @@ class TagApiTests(unittest.TestCase):
         db.session.add(tag_3)
         db.session.commit()
 
-    def assertTags(self, data):
+    def assert_tags(self, data):
         self.assertEqual(1, data['objects'][0]['id'])
         self.assertEqual('tag1', data['objects'][0]['name'])
         self.assertEqual(2, data['objects'][1]['id'])

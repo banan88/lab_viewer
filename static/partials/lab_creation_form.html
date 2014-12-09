@@ -5,7 +5,13 @@
         Lab name <br/>
         <input class="form-control" type="text" placeholder="labName" ng-model="labCreationForm.name">
         Parent lab <br/>
-        <input class="form-control" type="text" placeholder="parentLabId" ng-model="labCreationForm.parent_id">
+        <select class="form-control">
+            <option value="one">One</option>
+            <option value="two">Two</option>
+            <option value="three">Three</option>
+            <option value="four">Four</option>
+            <option value="five">Five</option>
+        </select>
         <button type="submit" ng-click="saveLab()" class="btn btn-success">Save2</button>
     </form>
 

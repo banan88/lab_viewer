@@ -16,7 +16,7 @@ class LabApiTests(unittest.TestCase):
         TestClientManager.tearDownAppClient()
 
     def setUp(self):
-        self.prepareLabs()
+        self.prepare_labs()
 
     def tearDown(self):
         Lab.query.delete()
@@ -27,7 +27,7 @@ class LabApiTests(unittest.TestCase):
         response = TestClientManager.test_client.get('/api/v1/lab')
         data = json.loads(response.data)
         self.assertEquals(http_status[200], response.status)
-        self.assertLabs(data)
+        self.assert_all_labs(data)
 
     def test_get_single_lab(self):
         response = TestClientManager.test_client.get('/api/v1/lab/1')
@@ -95,7 +95,13 @@ class LabApiTests(unittest.TestCase):
         self.assertEquals(['child_lab1', 'child_lab2'],
                           [data['child_nodes'][0]['name'], data['child_nodes'][1]['name']])
 
-    def assertLabs(self, data):
+    def test_get_all_labs_without_children(self):
+        response = TestClientManager.test_client.get(
+            'api/v1/lab?q={"filters": [{"name": "parent_id", "op": "is_null"}]}')
+        data = json.loads(response.data)
+        print data
+
+    def assert_non_child_labs(self, data):
         self.assertEqual(1, data['objects'][0]['id'])
         self.assertEqual('lab1', data['objects'][0]['name'])
         self.assertEqual(2, data['objects'][1]['id'])
@@ -103,7 +109,15 @@ class LabApiTests(unittest.TestCase):
         self.assertEqual(3, data['objects'][2]['id'])
         self.assertEqual('lab3_master', data['objects'][2]['name'])
 
-    def prepareLabs(self):
+    def assert_all_labs(self, data):
+        self.assert_non_child_labs(data)
+        self.assertEqual(4, data['objects'][3]['id'])
+        self.assertEqual('lab4_slave', data['objects'][3]['name'])
+        self.assertEqual(5, data['objects'][4]['id'])
+        self.assertEqual('lab5_slave', data['objects'][4]['name'])
+
+
+    def prepare_labs(self):
         lab_1 = Lab('lab1')
         lab_2 = Lab('lab2')
         lab_3 = Lab('lab3_master')
