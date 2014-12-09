@@ -4,11 +4,10 @@ labCreationModalHandler.$inject = ['$scope', '$modal', '$log', 'ParentLabs'];
 function labCreationModalHandler($scope, $modal, $log, ParentLabs) {
     $scope.labCreationForm = {};
     $scope.saveLab = saveLab($scope, $log);
-    $scope.openModal = openModal($scope, $modal, $log);
-    $scope.parentLabs = ParentLabs.get();
+    $scope.openModal = openModal($scope, $modal, $log, ParentLabs);
 }
 
-function openModal($scope, $modal, $log) {
+function openModal($scope, $modal, $log, ParentLabs) {
     return function () {
         var modalInstance = $modal.open({
             templateUrl: 'partials/lab_creation_form.html',
@@ -24,6 +23,9 @@ function openModal($scope, $modal, $log) {
             $scope.selected = selectedItem;
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
+        });
+        ParentLabs.get().$promise.then(function (result) {
+            $scope.parentLabs = result;
         });
     };
 };

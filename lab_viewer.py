@@ -10,7 +10,7 @@ from app.shared import db
 
 database_driver = 'sqlite:///'
 database_path = 'db/lab_viewer.db'
-is_debug_mode = False
+is_debug_mode = True
 
 
 def create_app():
