@@ -1,10 +1,11 @@
 angular.module('Controllers').controller('LabCreationModalController', labCreationModalHandler);
-labCreationModalHandler.$inject = ['$scope', '$modal', '$log'];
+labCreationModalHandler.$inject = ['$scope', '$modal', '$log', 'ParentLabs'];
 
-function labCreationModalHandler($scope, $modal, $log) {
+function labCreationModalHandler($scope, $modal, $log, ParentLabs) {
     $scope.labCreationForm = {};
     $scope.saveLab = saveLab($scope, $log);
     $scope.openModal = openModal($scope, $modal, $log);
+    $scope.parentLabs = ParentLabs.get();
 }
 
 function openModal($scope, $modal, $log) {
@@ -29,6 +30,8 @@ function openModal($scope, $modal, $log) {
 
 function saveLab($scope, $log) {
     return function () {
-        $log.info('saveLab called, labname: ' + $scope.labCreationForm.name);
+        $log.info('saveLab called, labname: '
+            + $scope.labCreationForm.name + 'parent_id: ' + $scope.labCreationForm.parent_id);
+        $log.info($scope.parentLabs);
     };
 };
