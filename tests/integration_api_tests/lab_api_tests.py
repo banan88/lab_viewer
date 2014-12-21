@@ -99,7 +99,7 @@ class LabApiTests(unittest.TestCase):
         response = TestClientManager.test_client.get(
             'api/v1/lab?q={"filters": [{"name": "parent_id", "op": "is_null"}]}')
         data = json.loads(response.data)
-        print data
+        self.assert_non_child_labs( data)
 
     def assert_non_child_labs(self, data):
         self.assertEqual(1, data['objects'][0]['id'])

@@ -1,39 +1,41 @@
 angular.module('Controllers').controller('LabCreationModalController', labCreationModalHandler);
-labCreationModalHandler.$inject = ['$scope', '$modal', '$log', 'ParentLabs'];
+labCreationModalHandler.$inject = ['$scope', '$modal'];
 
-function labCreationModalHandler($scope, $modal, $log, ParentLabs) {
-    $scope.labCreationForm = {};
-    $scope.saveLab = saveLab($scope, $log);
-    $scope.openModal = openModal($scope, $modal, $log, ParentLabs);
-}
+function labCreationModalHandler($scope, $modal) {
+    $scope.showModal = function () {
 
-function openModal($scope, $modal, $log, ParentLabs) {
-    return function () {
-        var modalInstance = $modal.open({
+        $scope.opts = {
+            backdropClick: true,
+            keyboard: true,
             templateUrl: 'partials/lab_creation_form.html',
-            /*controller: 'ModalInstanceCtrl',*/
-            resolve: {
-                items: function () {
-                    return $scope.items;
-                }
-            }
-        });
+            controller: ModalInstanceCtrl,
+        };
 
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
+        var modalInstance = $modal.open($scope.opts);
+
+        modalInstance.result.then(function () {
+            //on ok button press
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
-        });
-        ParentLabs.get().$promise.then(function (result) {
-            $scope.parentLabs = result;
+            //on cancel button press
+            console.log("Modal Closed");
         });
     };
 };
 
-function saveLab($scope, $log) {
-    return function () {
-        $log.info('saveLab called, labname: '
-            + $scope.labCreationForm.name + 'parent_id: ' + $scope.labCreationForm.parent_id);
-        $log.info($scope.parentLabs);
+function ModalInstanceCtrl($scope, $modalInstance, $log, ParentLabs, Lab) {
+    ParentLabs.get().$promise.then(function (result) {
+        $scope.parentLabCandidates = result.objects;
+    });
+
+    $scope.formData = {};
+
+    $scope.ok = function () {
+        $modalInstance.close();
+        $log.info( $scope.formData);
+        Lab.save( $scope.formData);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 };
