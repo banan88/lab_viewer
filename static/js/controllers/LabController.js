@@ -7,6 +7,7 @@ function labControllerHandler($scope, $rootScope, $routeParams, Lab) {
         updateBreadcrumbsLink($scope, $rootScope, Lab, labId);
     } else {
         $scope.labs = Lab.get();
+        $rootScope.resourceId = $rootScope.resourceName = undefined;
     }
 };
 

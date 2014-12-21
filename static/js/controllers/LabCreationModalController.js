@@ -8,7 +8,7 @@ function labCreationModalHandler($scope, $modal) {
             backdropClick: true,
             keyboard: true,
             templateUrl: 'partials/lab_creation_form.html',
-            controller: ModalInstanceCtrl,
+            controller: ModalInstanceCtrl
         };
 
         var modalInstance = $modal.open($scope.opts);
@@ -31,8 +31,10 @@ function ModalInstanceCtrl($scope, $modalInstance, $log, ParentLabs, Lab) {
 
     $scope.ok = function () {
         $modalInstance.close();
-        $log.info( $scope.formData);
-        Lab.save( $scope.formData);
+        $log.info($scope.formData);
+        Lab.save($scope.formData).$promise.then(undefined, function (result) {
+            alert('an error ocurred when creating lab.');
+        });
     };
 
     $scope.cancel = function () {
