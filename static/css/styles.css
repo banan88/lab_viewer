@@ -10,18 +10,6 @@
     color: white;
 }
 
-div.fixDisplayStyle label {
-    display: block;
-}
-
 .formMargin {
     margin: 10px;
-}
-
-.dynamic-form input.ng-invalid.ng-touched, .dynamic-form input.ng-untouched, .dynamic-form input.ng-pristine {
-    background-color: #FA787E;
-}
-
-.dynamic-form input.ng-valid.ng-touched {
-    background-color: #78FA89;
 }

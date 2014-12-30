@@ -27,42 +27,12 @@ function ModalInstanceCtrl($scope, $modalInstance, $log, ParentLabs, Lab) {
         $scope.parentLabCandidates = result.objects;
     });
 
-    $scope.formData = {};
+    $scope.newLabFormData = {};
 
-    $scope.formTemplate = [
-        {
-            "type": "text",
-            "label": "Lab name",
-            "model": "name",
-            "placeholder": "lab name",
-            "display": "block;",
-            "minLength":"3",
-            "attributes": {
-                "data-ng-required":"true"
-            }
-        },
-        {
-            "type": "submit",
-            "callback": "ok()",
-            "label": "Create",
-            "disabled" : "labForm.$invalid",
-            "attributes": {
-                "class": "btn btn-success"
-            }
-        },
-        {
-            "type": "submit",
-            "callback": "cancel()",
-            "label": "Cancel",
-            "attributes": {
-                "class": "btn btn-warning"
-            }
-        }
-    ];
 
     $scope.ok = function () {
         //$modalInstance.close();
-        Lab.save($scope.formData);
+       // Lab.save($scope.newLabFormData);
     };
 
     $scope.cancel = function () {

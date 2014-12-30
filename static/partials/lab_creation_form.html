@@ -1,11 +1,16 @@
-<div class="formMargin">
-    <h1>New lab</h1>
+<h1>New lab</h1>
 
-    <div class="fixDisplayStyle">
-        <dynamic-form template="formTemplate"
-                      name="labForm"
-                      ng-model="formData"
-                      ng-submit="processForm()">
-        </dynamic-form>
+<form name="newLabForm" novalidate class="formMargin">
+    <div class="form-group">
+        <label for="labName">Lab name:</label>
+        <input class="form-control" type="text" ng-model="newLabFormData.name" id="labName" name="labName" required
+               aria-describedby="labNameHelp">
+
+            <span id="labNameHelp" ng-show="newLabForm.$submitted || newLabForm.$touched">
+                <div class="label label-danger" ng-show="newLabForm.labName.$error.required">Lab name is required.</div>
+            </span>
     </div>
-</div>
+    <br/>
+    <input type="submit" class="btn btn-success" ng-click="ok()" value="Save"/>
+    <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel"/>
+</form>
