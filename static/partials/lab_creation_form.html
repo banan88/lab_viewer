@@ -1,14 +1,11 @@
-<div>
+<div class="formMargin">
     <h1>New lab</h1>
 
-    <form class="form-horizontal" role="form" novalidate>
-        Lab name <br/>
-        <input class="form-control" type="text" placeholder="labName" ng-model="formData.name">
-        Parent lab <br/>
-        <select class="form-control" ng-model="formData.parent_id">
-            <option ng-repeat="lab in parentLabCandidates" value="{{ lab.id }}">{{ lab.name }}</option>
-        </select>
-        <button type="submit" ng-click="ok()" class="btn btn-success">Save2</button>
-        <button type="cancel" ng-click="cancel()" class="btn btn-warning">Save2</button>
-    </form>
+    <div class="fixDisplayStyle">
+        <dynamic-form template="formTemplate"
+                      name="labForm"
+                      ng-model="formData"
+                      ng-submit="processForm()">
+        </dynamic-form>
+    </div>
 </div>
