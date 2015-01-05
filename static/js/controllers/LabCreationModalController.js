@@ -5,20 +5,13 @@ function labCreationModalHandler($scope, $modal) {
     $scope.showModal = function () {
 
         $scope.opts = {
-            backdropClick: true,
+            backdrop: 'static',
             keyboard: true,
             templateUrl: 'partials/lab_creation_form.html',
             controller: ModalInstanceCtrl
         };
 
         var modalInstance = $modal.open($scope.opts);
-
-        modalInstance.result.then(function () {
-            //on ok button press
-        }, function () {
-            //on cancel button press
-            console.log("Modal Closed");
-        });
     };
 };
 
@@ -30,9 +23,12 @@ function ModalInstanceCtrl($scope, $modalInstance, $log, ParentLabs, Lab) {
     $scope.newLabFormData = {};
 
 
-    $scope.ok = function () {
-        //$modalInstance.close();
-       // Lab.save($scope.newLabFormData);
+    $scope.submit = function (form) {
+        if (form.$valid) {
+            $modalInstance.close();
+            Lab.save($scope.newLabFormData);
+            $(element).bootstrapGrowl("This is a test.");
+        }
     };
 
     $scope.cancel = function () {

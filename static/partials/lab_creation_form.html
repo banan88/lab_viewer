@@ -1,16 +1,22 @@
 <h1>New lab</h1>
 
 <form name="newLabForm" novalidate class="formMargin">
+
     <div class="form-group">
         <label for="labName">Lab name:</label>
         <input class="form-control" type="text" ng-model="newLabFormData.name" id="labName" name="labName" required
-               aria-describedby="labNameHelp">
-
+               aria-describedby="labNameHelp" autocomplete="off" placeholder="CloudLab..." >
             <span id="labNameHelp" ng-show="newLabForm.$submitted || newLabForm.$touched">
                 <div class="label label-danger" ng-show="newLabForm.labName.$error.required">Lab name is required.</div>
             </span>
     </div>
-    <br/>
-    <input type="submit" class="btn btn-success" ng-click="ok()" value="Save"/>
+
+    <div class="form-group">
+        <label for="mppName">Mpp name:</label>
+        <input class="form-control" type="text" ng-model="newLabFormData.mppName" id="mppName" name="mppName"
+               aria-describedby="mppNameHelp" autocomplete="off" placeholder="clab..." >
+    </div>
+
+    <input type="submit" class="btn btn-success" ng-click="submit(newLabForm)" value="Save"/>
     <input type="button" class="btn btn-default" ng-click="cancel()" value="Cancel"/>
 </form>

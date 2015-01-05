@@ -14,6 +14,7 @@ def pre_put_single(instance_id, **kw):
             description="This lab is a master node, can't assign it to another node.",
             code=400)
 
+
 def create_api_manager(application):
     """
     Creates & configures flask-restless api manager providing rest api for db model classes.
@@ -22,10 +23,13 @@ def create_api_manager(application):
     configure_labs_api(manager)
     configure_tags_api(manager)
 
+
 def configure_labs_api(manager):
     manager.create_api(Lab, url_prefix=rest_api_prefix, methods=all_http_verbs,
-                       include_columns=['id', 'name', 'parent_id', 'child_nodes', 'tags'],
+                       include_columns=['id', 'name', 'mpp_name', 'ip', 'credentials', 'description', 'parent_id',
+                                        'child_nodes', 'tags'],
                        preprocessors={'PUT_SINGLE': [pre_put_single]})
+
 
 def configure_tags_api(manager):
     manager.create_api(Tag, url_prefix=rest_api_prefix, methods=all_http_verbs, include_columns=['id', 'name', 'labs'])
