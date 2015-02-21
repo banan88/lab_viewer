@@ -25,9 +25,16 @@ function ModalInstanceCtrl($scope, $modalInstance, $log, ParentLabs, Lab) {
 
     $scope.submit = function (form) {
         if (form.$valid) {
-            $modalInstance.close();
-            Lab.save($scope.newLabFormData);
-            $(element).bootstrapGrowl("This is a test.");
+            //$modalInstance.close();
+            Lab.save($scope.newLabFormData,
+                function (value) {//TODO use some cool growl-like functionality
+                    alert('lab created!');
+                },
+                function (error) {
+                    //alert('lab creation failed due to: ' + error.data.message);
+                    $scope.error = error.data.message;
+                }
+            );
         }
     };
 
