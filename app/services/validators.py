@@ -11,16 +11,31 @@ def check_master_node_assign(instance_id, **kw):
             code=400)
 
 
+def unique_validator_for_model(model):
+    unique_fields = []
+
+    for constraint in model.__table__.constraints:
+        if type(constraint) is UniqueConstraint or type(constraint) is PrimaryKeyConstraint:
+            for column in  constraint.columns.items():
+                unique_fields.append(column[0])
+
+    def check_constraints(data, **kw):
+        field_names_to_check = []
+        for k, v in data.iteritems() :
+            if camelcase_to_underscore(k) in unique_fields:
+                field_names_to_check.append(k)
+        print field_names_to_check
+
+    return check_constraints
+
+
+
+
 #TODO make this validator generic!
-def check_lab_unique(data, **kw):
+def check_constraints(data, **kw):
+    print data
     for k, v in data.iteritems() :
         print camelcase_to_underscore(k)
-
-
-    for c in Lab.__table__.constraints:
-        if type(c) is UniqueConstraint or type(c) is PrimaryKeyConstraint:
-            print c.columns
-
 
     name = data.get('name') #chain filters to make one sql query for all constraints + relevant msg
     if Lab.query.filter_by(name=name).count() > 0:
